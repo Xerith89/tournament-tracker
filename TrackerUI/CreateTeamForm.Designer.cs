@@ -153,7 +153,7 @@
             // 
             // lastNameValue
             // 
-            this.lastNameValue.Location = new System.Drawing.Point(203, 96);
+            this.lastNameValue.Location = new System.Drawing.Point(203, 95);
             this.lastNameValue.Name = "lastNameValue";
             this.lastNameValue.Size = new System.Drawing.Size(244, 43);
             this.lastNameValue.TabIndex = 12;
