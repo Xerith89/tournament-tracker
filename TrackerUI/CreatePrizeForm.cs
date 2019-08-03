@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrackerLibrary;
 
 namespace TrackerUI
 {
@@ -15,6 +16,56 @@ namespace TrackerUI
         public CreatePrizeForm()
         {
             InitializeComponent();
+        }
+
+        private void CreatePrizeButton_Click(object sender, EventArgs e)
+        {
+            if (ValiateForm())
+            {
+                PrizeModel model = new PrizeModel(placeNumberValue.Text, placeNameValue.Text, prizeAmountValue.Text, prizePercentageValue.Text);
+
+                foreach (var db in GlobalConfig.Connections)
+                {
+                    db.CreatePrize(model);
+                }
+                MessageBox.Show("Prize Created Successfully.");
+
+                placeNumberValue.Text = "";
+                placeNameValue.Text = "";
+                prizeAmountValue.Text = "0";
+                prizePercentageValue.Text = "0";
+            }
+            else
+                MessageBox.Show("The form has invalid data, please fix and try again.");
+        }
+
+        private bool ValiateForm()
+        {
+            int placeNumber = 0;
+            if (!int.TryParse(placeNumberValue.Text,out placeNumber))
+                return false;
+
+            if (placeNumber < 1)
+                return false;
+
+            if (placeNameValue.Text.Length == 0)
+                return false;
+
+            decimal prizeAmount = 0;
+            if (!decimal.TryParse(prizeAmountValue.Text, out prizeAmount))
+                return false;
+
+            double prizePercentage = 0;
+            if (!double.TryParse(prizePercentageValue.Text, out prizePercentage))
+                return false;
+
+            if (prizeAmount <= 0 && prizePercentage <= 0)
+                return false;
+
+            if (prizePercentage < 0 || prizePercentage > 100)
+                return false;
+
+            return true;
         }
     }
 }

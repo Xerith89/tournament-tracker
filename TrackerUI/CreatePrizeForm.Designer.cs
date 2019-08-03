@@ -1,4 +1,4 @@
-﻿namespace TrackerUI
+namespace TrackerUI
 {
     partial class CreatePrizeForm
     {
@@ -94,6 +94,7 @@
             this.prizeAmountValue.Name = "prizeAmountValue";
             this.prizeAmountValue.Size = new System.Drawing.Size(244, 35);
             this.prizeAmountValue.TabIndex = 16;
+            this.prizeAmountValue.Text = "0";
             // 
             // prizeAmountLabel
             // 
@@ -112,6 +113,7 @@
             this.prizePercentageValue.Name = "prizePercentageValue";
             this.prizePercentageValue.Size = new System.Drawing.Size(244, 35);
             this.prizePercentageValue.TabIndex = 18;
+            this.prizePercentageValue.Text = "0";
             // 
             // prizePercentageLabel
             // 
@@ -138,6 +140,7 @@
             this.createPrizeButton.TabIndex = 23;
             this.createPrizeButton.Text = "Create Prize";
             this.createPrizeButton.UseVisualStyleBackColor = true;
+            this.createPrizeButton.Click += new System.EventHandler(this.CreatePrizeButton_Click);
             // 
             // orLabel
             // 

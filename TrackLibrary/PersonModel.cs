@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TrackLibrary
+namespace TrackerLibrary
 {
     public class PersonModel
     {
