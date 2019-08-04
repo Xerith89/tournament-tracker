@@ -8,29 +8,26 @@ namespace TrackerLibrary
 {
     public static class GlobalConfig
     {
-        public static List<IDataConnection> Connections { get; private set; } = new List<IDataConnection>();
+        public static IDataConnection Connection { get; private set; }
 
         public static string GetConnectionString(string connectionName)
         {
             return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
         }
 
-        public static void InitialiseConnections(bool database, bool textFiles)
+        public static void InitialiseConnections(DatabaseType dB)
         {
-            if (database)
+            switch (dB)
             {
-                // TODO - Set up SQL connector properly
-
-                SQLConnector sql = new SQLConnector();
-                Connections.Add(sql);
-            }
-
-            if (textFiles)
-            {
-                // TODO - Create Text Connection
-
-                TextConnector text = new TextConnector();
-                Connections.Add(text);
+                case DatabaseType.Sql:
+                    SQLConnector sql = new SQLConnector();
+                    Connection = sql;
+                    break;
+            
+                case DatabaseType.TextFile:
+                    TextConnector text = new TextConnector();
+                    Connection = text;
+                    break;
             }
         }
     }
