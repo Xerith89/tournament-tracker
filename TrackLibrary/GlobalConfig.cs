@@ -2,12 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TrackerLibrary.DataAccess;
+using System.Configuration;
 
 namespace TrackerLibrary
 {
     public static class GlobalConfig
     {
         public static List<IDataConnection> Connections { get; private set; } = new List<IDataConnection>();
+
+        public static string GetConnectionString(string connectionName)
+        {
+            return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+        }
 
         public static void InitialiseConnections(bool database, bool textFiles)
         {
