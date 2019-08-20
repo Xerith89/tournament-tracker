@@ -6,6 +6,7 @@ namespace TrackerLibrary.Models
 {
     public class PersonModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// Represents a person's first name.
         /// </summary>
