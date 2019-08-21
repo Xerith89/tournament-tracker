@@ -23,5 +23,13 @@ namespace TrackerLibrary.Models
         /// Represents a person's mobile number.
         /// </summary>
         public string MobileNumber { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
     }
 }
