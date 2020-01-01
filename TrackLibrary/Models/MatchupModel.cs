@@ -9,6 +9,7 @@ namespace TrackerLibrary.Models
         /// <summary>
         /// A list of the teams competing in a matchup.
         /// </summary>
+        public int Id { get; set; }
         public List<MatchupEntryModel> Entries { get; set; } = new List<MatchupEntryModel>();
         /// <summary>
         /// The winning team of a matchup.

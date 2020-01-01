@@ -110,17 +110,23 @@ namespace TrackerUI
         {
             decimal fee;
             bool feeAcceptable = decimal.TryParse(entryFeeValue.Text, out fee);
+
+            if (!feeAcceptable)
+            {
+                MessageBox.Show("Invalid Fee", "Invalid Fee", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             TournamentModel tm = new TournamentModel();
             tm.TournamentName = tournamentNameValue.Text;
-            if (!feeAcceptable)
-               MessageBox.Show("Invalid Fee", "Invalid Fee", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             tm.EntryFee = fee;
 
             tm.Prizes = selectedPrizes;
             tm.EnteredTeams = selectedTeams;
-            
-           
+
+            GlobalConfig.Connection.CreateTournament(tm);
+
         }
     }
 }
